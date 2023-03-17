@@ -11,7 +11,7 @@
 // incluir CC65 cabecera NES(PPU)
 #include <nes.h>
 
-// link the pattern table into CHR ROM
+// vincula la tabla de patrones en CHR ROM. NO ELIMINAR EL SIGUIENTE COMENTARIO
 //#link "chr_generic.s"
 
 // BCD soporte operaciones aritmeticas
@@ -24,13 +24,15 @@
 
 /*{pal:"nes",layout:"nes"}*/
 
+
+
 //-------------OPCIÓN 1-------------
 /* SE PUEDE ESCOGER UNA DE LAS DOS PALETAS
 
 const char PALETTE[5] = { 
-  0x1B,			// screen color
+  0x1B,			// color de pantalla
 
-  0x04,0x30,0x27,0x00,	// background palette 0
+  0x04,0x30,0x27,0x00,	// paleta 0 para fondo
 }; */
 
 /*
@@ -62,7 +64,7 @@ void main(void)
   setup_graphics();
   // escribir mensaje  
   vram_adr(NTADR_A(2,2));
-  vram_write("HELLO, WORLD!", 12);
+  vram_write("HOLA MUNDO!", 11);
   // habilitar renderizado
   ppu_on_all();
   // ciclo infinito
@@ -70,6 +72,8 @@ void main(void)
   }
 }
 */ 
+//-----FIN OPCION 1-----//
+
 //-------------OPCIÓN 2-------------//
 void main(void) {
 
@@ -81,7 +85,7 @@ void main(void) {
 
   // Escribe texto en la nametable
   vram_adr(NTADR_A(2,2));		// establece dirección de memoria
-  vram_write("HELLO, WORLD!", 13);	// escribe bytes en la video RAM
+  vram_write("HOLA MUNDO!", 11);	// escribe bytes en la video RAM
 
   // Habilita renderizado de PPU (enciende pantalla)
   ppu_on_all();
@@ -90,4 +94,4 @@ void main(void) {
   while (1) ;
 }
 
-//
+//-----FIN OPCION 2-----//
